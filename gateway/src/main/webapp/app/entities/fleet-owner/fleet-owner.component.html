@@ -1,0 +1,81 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="gatewayApp.fleetOwner.home.title">Fleet Owners</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-fleet-owner" [routerLink]="['/fleet-owner/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="gatewayApp.fleetOwner.home.createLabel">
+            Create new Fleet Owner
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="fleetOwners">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="companyName"><span jhiTranslate="gatewayApp.fleetOwner.companyName">Company Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="gender"><span jhiTranslate="gatewayApp.fleetOwner.gender">Gender</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="phone"><span jhiTranslate="gatewayApp.fleetOwner.phone">Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="addressLine1"><span jhiTranslate="gatewayApp.fleetOwner.addressLine1">Address Line 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="addressLine2"><span jhiTranslate="gatewayApp.fleetOwner.addressLine2">Address Line 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="city"><span jhiTranslate="gatewayApp.fleetOwner.city">City</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="country"><span jhiTranslate="gatewayApp.fleetOwner.country">Country</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="image"><span jhiTranslate="gatewayApp.fleetOwner.image">Image</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="createdAt"><span jhiTranslate="gatewayApp.fleetOwner.createdAt">Created At</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="updatedAt"><span jhiTranslate="gatewayApp.fleetOwner.updatedAt">Updated At</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="user.id"><span jhiTranslate="gatewayApp.fleetOwner.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let fleetOwner of fleetOwners ;trackBy: trackId">
+                <td><a [routerLink]="['/fleet-owner', fleetOwner.id, 'view' ]">{{fleetOwner.id}}</a></td>
+                <td>{{fleetOwner.companyName}}</td>
+                <td jhiTranslate="{{'gatewayApp.Gender.' + fleetOwner.gender}}">{{fleetOwner.gender}}</td>
+                <td>{{fleetOwner.phone}}</td>
+                <td>{{fleetOwner.addressLine1}}</td>
+                <td>{{fleetOwner.addressLine2}}</td>
+                <td>{{fleetOwner.city}}</td>
+                <td>{{fleetOwner.country}}</td>
+                <td>
+                    <a *ngIf="fleetOwner.image" (click)="openFile(fleetOwner.imageContentType, fleetOwner.image)">
+                        <img [src]="'data:' + fleetOwner.imageContentType + ';base64,' + fleetOwner.image" style="max-height: 30px;" alt="fleetOwner image"/>
+                    </a>
+                    <span *ngIf="fleetOwner.image">{{fleetOwner.imageContentType}}, {{byteSize(fleetOwner.image)}}</span>
+                </td>
+                <td>{{fleetOwner.createdAt | date:'medium'}}</td>
+                <td>{{fleetOwner.updatedAt | date:'medium'}}</td>
+                <td>
+                    {{fleetOwner.user?.id}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/fleet-owner', fleetOwner.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/fleet-owner', fleetOwner.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'fleet-owner/'+ fleetOwner.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

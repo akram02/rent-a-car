@@ -1,0 +1,39 @@
+
+{
+    "gatewayApp": {
+        "driver" : {
+            "home": {
+                "title": "Drivers",
+                "createLabel": "Créer un nouveau Driver",
+                "createOrEditLabel": "Créer ou éditer un Driver"
+            },
+            "created": "Un nouveau Driver a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Driver avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Driver avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Driver {{ id }} ?"
+            },
+            "detail": {
+                "title": "Driver"
+            },
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "Email",
+            "gender": "Gender",
+            "phone": "Phone",
+            "addressLine1": "Address Line 1",
+            "addressLine2": "Address Line 2",
+            "city": "City",
+            "country": "Country",
+            "licenseNo": "License No",
+            "licenseImage": "License Image",
+            "nid": "Nid",
+            "nidImage": "Nid Image",
+            "image": "Image",
+            "createdAt": "Created At",
+            "updatedAt": "Updated At",
+            "car": "Car",
+            "fleetowner": "Fleetowner"
+        }
+    }
+}

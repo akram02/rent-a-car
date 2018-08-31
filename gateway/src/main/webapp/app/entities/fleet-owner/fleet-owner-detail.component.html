@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fleetOwner">
+            <h2><span jhiTranslate="gatewayApp.fleetOwner.detail.title">Fleet Owner</span> {{fleetOwner.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gatewayApp.fleetOwner.companyName">Company Name</span></dt>
+                <dd>
+                    <span>{{fleetOwner.companyName}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.fleetOwner.gender">Gender</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'gatewayApp.Gender.' + fleetOwner.gender}}">{{fleetOwner.gender}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.fleetOwner.phone">Phone</span></dt>
+                <dd>
+                    <span>{{fleetOwner.phone}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.fleetOwner.addressLine1">Address Line 1</span></dt>
+                <dd>
+                    <span>{{fleetOwner.addressLine1}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.fleetOwner.addressLine2">Address Line 2</span></dt>
+                <dd>
+                    <span>{{fleetOwner.addressLine2}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.fleetOwner.city">City</span></dt>
+                <dd>
+                    <span>{{fleetOwner.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.fleetOwner.country">Country</span></dt>
+                <dd>
+                    <span>{{fleetOwner.country}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.fleetOwner.image">Image</span></dt>
+                <dd>
+                    <div *ngIf="fleetOwner.image">
+                        <a (click)="openFile(fleetOwner.imageContentType, fleetOwner.image)">
+                            <img [src]="'data:' + fleetOwner.imageContentType + ';base64,' + fleetOwner.image" style="max-width: 100%;" alt="fleetOwner image"/>
+                        </a>
+                        {{fleetOwner.imageContentType}}, {{byteSize(fleetOwner.image)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.fleetOwner.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{fleetOwner.createdAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.fleetOwner.updatedAt">Updated At</span></dt>
+                <dd>
+                    <span>{{fleetOwner.updatedAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.fleetOwner.user">User</span></dt>
+                <dd>
+                    {{fleetOwner.user?.id}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/fleet-owner', fleetOwner.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

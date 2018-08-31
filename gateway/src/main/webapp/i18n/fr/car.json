@@ -1,0 +1,31 @@
+
+{
+    "gatewayApp": {
+        "car" : {
+            "home": {
+                "title": "Cars",
+                "createLabel": "Créer un nouveau Car",
+                "createOrEditLabel": "Créer ou éditer un Car"
+            },
+            "created": "Un nouveau Car a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Car avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Car avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Car {{ id }} ?"
+            },
+            "detail": {
+                "title": "Car"
+            },
+            "brand": "Brand",
+            "model": "Model",
+            "registrationNo": "Registration No",
+            "image": "Image",
+            "manufacturerYear": "Manufacturer Year",
+            "driverId": "Driver Id",
+            "createdAt": "Created At",
+            "updatedAt": "Updated At",
+            "cartype": "Cartype",
+            "fleetowner": "Fleetowner"
+        }
+    }
+}

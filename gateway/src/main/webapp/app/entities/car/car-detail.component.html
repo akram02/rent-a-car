@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="car">
+            <h2><span jhiTranslate="gatewayApp.car.detail.title">Car</span> {{car.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gatewayApp.car.brand">Brand</span></dt>
+                <dd>
+                    <span>{{car.brand}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.car.model">Model</span></dt>
+                <dd>
+                    <span>{{car.model}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.car.registrationNo">Registration No</span></dt>
+                <dd>
+                    <span>{{car.registrationNo}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.car.image">Image</span></dt>
+                <dd>
+                    <div *ngIf="car.image">
+                        <a (click)="openFile(car.imageContentType, car.image)">
+                            <img [src]="'data:' + car.imageContentType + ';base64,' + car.image" style="max-width: 100%;" alt="car image"/>
+                        </a>
+                        {{car.imageContentType}}, {{byteSize(car.image)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.car.manufacturerYear">Manufacturer Year</span></dt>
+                <dd>
+                    <span>{{car.manufacturerYear}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.car.driverId">Driver Id</span></dt>
+                <dd>
+                    <span>{{car.driverId}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.car.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{car.createdAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.car.updatedAt">Updated At</span></dt>
+                <dd>
+                    <span>{{car.updatedAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.car.cartype">Cartype</span></dt>
+                <dd>
+                    <div *ngIf="car.cartype">
+                        <a [routerLink]="['/car-type', car.cartype?.id, 'view']">{{car.cartype?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.car.fleetowner">Fleetowner</span></dt>
+                <dd>
+                    <div *ngIf="car.fleetowner">
+                        <a [routerLink]="['/fleet-owner', car.fleetowner?.id, 'view']">{{car.fleetowner?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/car', car.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

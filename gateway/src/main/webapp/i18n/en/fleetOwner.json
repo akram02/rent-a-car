@@ -1,0 +1,34 @@
+
+{
+    "gatewayApp": {
+        "fleetOwner" : {
+            "home": {
+                "title": "Fleet Owners",
+                "createLabel": "Create a new Fleet Owner",
+                "createOrEditLabel": "Create or edit a Fleet Owner"
+            },
+            "created": "A new Fleet Owner is created with identifier {{ param }}",
+            "updated": "A Fleet Owner is updated with identifier {{ param }}",
+            "deleted": "A Fleet Owner is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Fleet Owner {{ id }}?"
+            },
+            "detail": {
+                "title": "Fleet Owner"
+            },
+            "companyName": "Company Name",
+            "gender": "Gender",
+            "phone": "Phone",
+            "addressLine1": "Address Line 1",
+            "addressLine2": "Address Line 2",
+            "city": "City",
+            "country": "Country",
+            "image": "Image",
+            "createdAt": "Created At",
+            "updatedAt": "Updated At",
+            "user": "User",
+            "car": "Car",
+            "driver": "Driver"
+        }
+    }
+}

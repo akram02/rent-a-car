@@ -1,0 +1,23 @@
+
+{
+    "gatewayApp": {
+        "carType" : {
+            "home": {
+                "title": "Car Types",
+                "createLabel": "Create a new Car Type",
+                "createOrEditLabel": "Create or edit a Car Type"
+            },
+            "created": "A new Car Type is created with identifier {{ param }}",
+            "updated": "A Car Type is updated with identifier {{ param }}",
+            "deleted": "A Car Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Car Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Car Type"
+            },
+            "typeName": "Type Name",
+            "car": "Car"
+        }
+    }
+}

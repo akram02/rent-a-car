@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Driver.
+    -->
+    <changeSet id="20180831071425-1" author="jhipster">
+        <createTable tableName="driver">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="gender" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="phone" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="address_line_1" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="address_line_2" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="city" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="country" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="license_no" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="license_image" type="longblob">
+                <constraints nullable="false" />
+            </column>
+            <column name="license_image_content_type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="nid" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="nid_image" type="longblob">
+                <constraints nullable="false" />
+            </column>
+            <column name="nid_image_content_type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="image" type="longblob">
+                <constraints nullable="false" />
+            </column>
+            <column name="image_content_type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="created_at" type="datetime">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="updated_at" type="datetime">
+                <constraints nullable="true" />
+            </column>
+            <column name="car_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_driver_car_id" />
+            </column>
+            <column name="fleetowner_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="driver" columnName="created_at" columnDataType="datetime"/>
+        <dropDefaultValue tableName="driver" columnName="updated_at" columnDataType="datetime"/>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

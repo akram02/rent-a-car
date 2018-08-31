@@ -1,0 +1,114 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="driver">
+            <h2><span jhiTranslate="gatewayApp.driver.detail.title">Driver</span> {{driver.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gatewayApp.driver.firstName">First Name</span></dt>
+                <dd>
+                    <span>{{driver.firstName}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.lastName">Last Name</span></dt>
+                <dd>
+                    <span>{{driver.lastName}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.email">Email</span></dt>
+                <dd>
+                    <span>{{driver.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.gender">Gender</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'gatewayApp.Gender.' + driver.gender}}">{{driver.gender}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.phone">Phone</span></dt>
+                <dd>
+                    <span>{{driver.phone}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.addressLine1">Address Line 1</span></dt>
+                <dd>
+                    <span>{{driver.addressLine1}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.addressLine2">Address Line 2</span></dt>
+                <dd>
+                    <span>{{driver.addressLine2}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.city">City</span></dt>
+                <dd>
+                    <span>{{driver.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.country">Country</span></dt>
+                <dd>
+                    <span>{{driver.country}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.licenseNo">License No</span></dt>
+                <dd>
+                    <span>{{driver.licenseNo}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.licenseImage">License Image</span></dt>
+                <dd>
+                    <div *ngIf="driver.licenseImage">
+                        <a (click)="openFile(driver.licenseImageContentType, driver.licenseImage)">
+                            <img [src]="'data:' + driver.licenseImageContentType + ';base64,' + driver.licenseImage" style="max-width: 100%;" alt="driver image"/>
+                        </a>
+                        {{driver.licenseImageContentType}}, {{byteSize(driver.licenseImage)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.nid">Nid</span></dt>
+                <dd>
+                    <span>{{driver.nid}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.nidImage">Nid Image</span></dt>
+                <dd>
+                    <div *ngIf="driver.nidImage">
+                        <a (click)="openFile(driver.nidImageContentType, driver.nidImage)">
+                            <img [src]="'data:' + driver.nidImageContentType + ';base64,' + driver.nidImage" style="max-width: 100%;" alt="driver image"/>
+                        </a>
+                        {{driver.nidImageContentType}}, {{byteSize(driver.nidImage)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.image">Image</span></dt>
+                <dd>
+                    <div *ngIf="driver.image">
+                        <a (click)="openFile(driver.imageContentType, driver.image)">
+                            <img [src]="'data:' + driver.imageContentType + ';base64,' + driver.image" style="max-width: 100%;" alt="driver image"/>
+                        </a>
+                        {{driver.imageContentType}}, {{byteSize(driver.image)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{driver.createdAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.updatedAt">Updated At</span></dt>
+                <dd>
+                    <span>{{driver.updatedAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.car">Car</span></dt>
+                <dd>
+                    <div *ngIf="driver.car">
+                        <a [routerLink]="['/car', driver.car?.id, 'view']">{{driver.car?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.driver.fleetowner">Fleetowner</span></dt>
+                <dd>
+                    <div *ngIf="driver.fleetowner">
+                        <a [routerLink]="['/fleet-owner', driver.fleetowner?.id, 'view']">{{driver.fleetowner?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/driver', driver.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

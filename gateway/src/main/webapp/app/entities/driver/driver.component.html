@@ -1,0 +1,119 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="gatewayApp.driver.home.title">Drivers</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-driver" [routerLink]="['/driver/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="gatewayApp.driver.home.createLabel">
+            Create new Driver
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="drivers">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="firstName"><span jhiTranslate="gatewayApp.driver.firstName">First Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lastName"><span jhiTranslate="gatewayApp.driver.lastName">Last Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="gatewayApp.driver.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="gender"><span jhiTranslate="gatewayApp.driver.gender">Gender</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="phone"><span jhiTranslate="gatewayApp.driver.phone">Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="addressLine1"><span jhiTranslate="gatewayApp.driver.addressLine1">Address Line 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="addressLine2"><span jhiTranslate="gatewayApp.driver.addressLine2">Address Line 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="city"><span jhiTranslate="gatewayApp.driver.city">City</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="country"><span jhiTranslate="gatewayApp.driver.country">Country</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="licenseNo"><span jhiTranslate="gatewayApp.driver.licenseNo">License No</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="licenseImage"><span jhiTranslate="gatewayApp.driver.licenseImage">License Image</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nid"><span jhiTranslate="gatewayApp.driver.nid">Nid</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nidImage"><span jhiTranslate="gatewayApp.driver.nidImage">Nid Image</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="image"><span jhiTranslate="gatewayApp.driver.image">Image</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="createdAt"><span jhiTranslate="gatewayApp.driver.createdAt">Created At</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="updatedAt"><span jhiTranslate="gatewayApp.driver.updatedAt">Updated At</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="car.id"><span jhiTranslate="gatewayApp.driver.car">Car</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fleetowner.id"><span jhiTranslate="gatewayApp.driver.fleetowner">Fleetowner</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let driver of drivers ;trackBy: trackId">
+                <td><a [routerLink]="['/driver', driver.id, 'view' ]">{{driver.id}}</a></td>
+                <td>{{driver.firstName}}</td>
+                <td>{{driver.lastName}}</td>
+                <td>{{driver.email}}</td>
+                <td jhiTranslate="{{'gatewayApp.Gender.' + driver.gender}}">{{driver.gender}}</td>
+                <td>{{driver.phone}}</td>
+                <td>{{driver.addressLine1}}</td>
+                <td>{{driver.addressLine2}}</td>
+                <td>{{driver.city}}</td>
+                <td>{{driver.country}}</td>
+                <td>{{driver.licenseNo}}</td>
+                <td>
+                    <a *ngIf="driver.licenseImage" (click)="openFile(driver.licenseImageContentType, driver.licenseImage)">
+                        <img [src]="'data:' + driver.licenseImageContentType + ';base64,' + driver.licenseImage" style="max-height: 30px;" alt="driver image"/>
+                    </a>
+                    <span *ngIf="driver.licenseImage">{{driver.licenseImageContentType}}, {{byteSize(driver.licenseImage)}}</span>
+                </td>
+                <td>{{driver.nid}}</td>
+                <td>
+                    <a *ngIf="driver.nidImage" (click)="openFile(driver.nidImageContentType, driver.nidImage)">
+                        <img [src]="'data:' + driver.nidImageContentType + ';base64,' + driver.nidImage" style="max-height: 30px;" alt="driver image"/>
+                    </a>
+                    <span *ngIf="driver.nidImage">{{driver.nidImageContentType}}, {{byteSize(driver.nidImage)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="driver.image" (click)="openFile(driver.imageContentType, driver.image)">
+                        <img [src]="'data:' + driver.imageContentType + ';base64,' + driver.image" style="max-height: 30px;" alt="driver image"/>
+                    </a>
+                    <span *ngIf="driver.image">{{driver.imageContentType}}, {{byteSize(driver.image)}}</span>
+                </td>
+                <td>{{driver.createdAt | date:'medium'}}</td>
+                <td>{{driver.updatedAt | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="driver.car">
+                        <a [routerLink]="['../car', driver.car?.id, 'view' ]" >{{driver.car?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="driver.fleetowner">
+                        <a [routerLink]="['../fleet-owner', driver.fleetowner?.id, 'view' ]" >{{driver.fleetowner?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/driver', driver.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/driver', driver.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'driver/'+ driver.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="drivers && drivers.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

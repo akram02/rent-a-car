@@ -1,0 +1,23 @@
+
+{
+    "gatewayApp": {
+        "carType" : {
+            "home": {
+                "title": "CarTypes",
+                "createLabel": "Créer un nouveau Car Type",
+                "createOrEditLabel": "Créer ou éditer un Car Type"
+            },
+            "created": "Un nouveau Car Type a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Car Type avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Car Type avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Car Type {{ id }} ?"
+            },
+            "detail": {
+                "title": "Car Type"
+            },
+            "typeName": "Type Name",
+            "car": "Car"
+        }
+    }
+}

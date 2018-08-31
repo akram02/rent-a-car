@@ -1,0 +1,239 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-driver-heading" jhiTranslate="gatewayApp.driver.home.createOrEditLabel">Create or edit a Driver</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!driver.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="driver.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.firstName" for="field_firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="field_firstName"
+                        [(ngModel)]="driver.firstName" required/>
+                    <div [hidden]="!(editForm.controls.firstName?.dirty && editForm.controls.firstName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.firstName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.lastName" for="field_lastName">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="field_lastName"
+                        [(ngModel)]="driver.lastName" required/>
+                    <div [hidden]="!(editForm.controls.lastName?.dirty && editForm.controls.lastName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.lastName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="driver.email" required/>
+                    <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.email?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.gender" for="field_gender">Gender</label>
+                    <select class="form-control" name="gender" [(ngModel)]="driver.gender" id="field_gender"  required>
+                        <option value="MALE">{{'gatewayApp.Gender.MALE' | translate}}</option>
+                        <option value="FEMALE">{{'gatewayApp.Gender.FEMALE' | translate}}</option>
+                        <option value="OTHER">{{'gatewayApp.Gender.OTHER' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.gender?.dirty && editForm.controls.gender?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.gender?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.phone" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                        [(ngModel)]="driver.phone" required/>
+                    <div [hidden]="!(editForm.controls.phone?.dirty && editForm.controls.phone?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.phone?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.addressLine1" for="field_addressLine1">Address Line 1</label>
+                    <input type="text" class="form-control" name="addressLine1" id="field_addressLine1"
+                        [(ngModel)]="driver.addressLine1" required/>
+                    <div [hidden]="!(editForm.controls.addressLine1?.dirty && editForm.controls.addressLine1?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.addressLine1?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.addressLine2" for="field_addressLine2">Address Line 2</label>
+                    <input type="text" class="form-control" name="addressLine2" id="field_addressLine2"
+                        [(ngModel)]="driver.addressLine2" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.city" for="field_city">City</label>
+                    <input type="text" class="form-control" name="city" id="field_city"
+                        [(ngModel)]="driver.city" required/>
+                    <div [hidden]="!(editForm.controls.city?.dirty && editForm.controls.city?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.city?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.country" for="field_country">Country</label>
+                    <input type="text" class="form-control" name="country" id="field_country"
+                        [(ngModel)]="driver.country" required/>
+                    <div [hidden]="!(editForm.controls.country?.dirty && editForm.controls.country?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.country?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.licenseNo" for="field_licenseNo">License No</label>
+                    <input type="text" class="form-control" name="licenseNo" id="field_licenseNo"
+                        [(ngModel)]="driver.licenseNo" required/>
+                    <div [hidden]="!(editForm.controls.licenseNo?.dirty && editForm.controls.licenseNo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.licenseNo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.licenseImage" for="field_licenseImage">License Image</label>
+                    <div>
+                        <img [src]="'data:' + driver.licenseImageContentType + ';base64,' + driver.licenseImage" style="max-height: 100px;" *ngIf="driver.licenseImage" alt="driver image"/>
+                        <div *ngIf="driver.licenseImage" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{driver.licenseImageContentType}}, {{byteSize(driver.licenseImage)}}</span>
+                            <button type="button" (click)="clearInputImage('licenseImage', 'licenseImageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_licenseImage" (change)="setFileData($event, driver, 'licenseImage', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="licenseImage" id="field_licenseImage"
+                        [(ngModel)]="driver.licenseImage" required/>
+                    <input type="hidden" class="form-control" name="licenseImageContentType" id="field_licenseImageContentType"
+                        [(ngModel)]="driver.licenseImageContentType" />
+                    <div [hidden]="!(editForm.controls.licenseImage?.dirty && editForm.controls.licenseImage?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.licenseImage?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.nid" for="field_nid">Nid</label>
+                    <input type="text" class="form-control" name="nid" id="field_nid"
+                        [(ngModel)]="driver.nid" required/>
+                    <div [hidden]="!(editForm.controls.nid?.dirty && editForm.controls.nid?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nid?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.nidImage" for="field_nidImage">Nid Image</label>
+                    <div>
+                        <img [src]="'data:' + driver.nidImageContentType + ';base64,' + driver.nidImage" style="max-height: 100px;" *ngIf="driver.nidImage" alt="driver image"/>
+                        <div *ngIf="driver.nidImage" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{driver.nidImageContentType}}, {{byteSize(driver.nidImage)}}</span>
+                            <button type="button" (click)="clearInputImage('nidImage', 'nidImageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_nidImage" (change)="setFileData($event, driver, 'nidImage', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="nidImage" id="field_nidImage"
+                        [(ngModel)]="driver.nidImage" required/>
+                    <input type="hidden" class="form-control" name="nidImageContentType" id="field_nidImageContentType"
+                        [(ngModel)]="driver.nidImageContentType" />
+                    <div [hidden]="!(editForm.controls.nidImage?.dirty && editForm.controls.nidImage?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nidImage?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.image" for="field_image">Image</label>
+                    <div>
+                        <img [src]="'data:' + driver.imageContentType + ';base64,' + driver.image" style="max-height: 100px;" *ngIf="driver.image" alt="driver image"/>
+                        <div *ngIf="driver.image" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{driver.imageContentType}}, {{byteSize(driver.image)}}</span>
+                            <button type="button" (click)="clearInputImage('image', 'imageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image" (change)="setFileData($event, driver, 'image', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image" id="field_image"
+                        [(ngModel)]="driver.image" required/>
+                    <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                        [(ngModel)]="driver.imageContentType" />
+                    <div [hidden]="!(editForm.controls.image?.dirty && editForm.controls.image?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.image?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.createdAt" for="field_createdAt">Created At</label>
+                    <div class="d-flex">
+                        <input id="field_createdAt" type="datetime-local" class="form-control" name="createdAt" [(ngModel)]="createdAt"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.updatedAt" for="field_updatedAt">Updated At</label>
+                    <div class="d-flex">
+                        <input id="field_updatedAt" type="datetime-local" class="form-control" name="updatedAt" [(ngModel)]="updatedAt"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.car" for="field_car">Car</label>
+                    <select class="form-control" id="field_car" name="car" [(ngModel)]="driver.car">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="carOption.id === driver.car?.id ? driver.car : carOption" *ngFor="let carOption of cars; trackBy: trackCarById">{{carOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.driver.fleetowner" for="field_fleetowner">Fleetowner</label>
+                    <select class="form-control" id="field_fleetowner" name="fleetowner" [(ngModel)]="driver.fleetowner" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="fleetOwnerOption.id === driver.fleetowner?.id ? driver.fleetowner : fleetOwnerOption" *ngFor="let fleetOwnerOption of fleetowners; trackBy: trackFleetOwnerById">{{fleetOwnerOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

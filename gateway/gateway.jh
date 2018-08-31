@@ -1,0 +1,79 @@
+entity FleetOwner {
+	companyName String required
+	gender Gender required
+	phone String required
+    addressLine1 String required
+    addressLine2 String
+    city String required
+    country String required
+    image ImageBlob required
+    createdAt Instant
+    updatedAt Instant
+}
+
+enum Gender {
+	MALE, FEMALE, OTHER
+}
+
+entity Car {
+	brand String required
+    model String required
+    registrationNo String required
+    image ImageBlob required
+    manufacturerYear Integer required
+    driverId Long
+    createdAt Instant
+    updatedAt Instant
+}
+
+entity CarType {
+	typeName String required
+}
+
+entity Driver {
+	firstName String required
+    lastName String required
+    email String required
+    gender Gender required
+	phone String required
+    addressLine1 String required
+    addressLine2 String
+    city String required
+    country String required
+    licenseNo String required
+    licenseImage ImageBlob required
+    nid String required
+    nidImage ImageBlob required
+    image ImageBlob required
+    createdAt Instant
+    updatedAt Instant
+}
+
+//entity User {
+//	login String required
+//    password String required
+//    firstName String // required
+//    lastName String // required
+//    email String // required
+//    activated Boolean required
+//    langKey String
+//    imageUrl String
+//    activationKey String
+//    resetKey String
+//    resetDate Instant
+//}
+
+relationship ManyToOne {
+	Car{cartype} to CarType{car}
+    Car{fleetowner} to FleetOwner{car}
+    Driver{fleetowner} to FleetOwner{driver}
+}
+relationship OneToOne {
+	Driver{car} to Car
+    FleetOwner{user} to User
+}
+
+service * with serviceClass
+paginate * with pagination except FleetOwner
+paginate FleetOwner with infinite-scroll
+//paginate * with pager
