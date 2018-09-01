@@ -29,6 +29,7 @@ export class CarComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
+    filter: string;
 
     constructor(
         private carService: CarService,

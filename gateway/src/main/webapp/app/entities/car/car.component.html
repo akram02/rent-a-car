@@ -11,10 +11,35 @@
     <jhi-alert></jhi-alert>
     <br/>
     <div *ngIf="cars">
+        <div class="mb-2 d-flex justify-content-end align-items-center">
+            <span class="mr-2 col-2">Filter by Brand Name</span>
+            <input type="search" class="form-control" [(ngModel)]="filter">
+            <span class="mx-2">Sort by</span>
+            <div class="btn-group" role="group"
+                  jhiSort [(predicate)]="predicate" [(ascending)]="reverse"
+                          [callback]="transition.bind(this)">
+                <button type="button" class="btn btn-light" jhiSortBy="brand">
+                    <span jhiTranslate="gatewayApp.car.brand">Brand</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </button>
+                <button type="button" class="btn btn-light" jhiSortBy="model">
+                    <span jhiTranslate="gatewayApp.car.model">Model</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </button>
+                <button type="button" class="btn btn-light" jhiSortBy="manufacturerYear">
+                    <span jhiTranslate="gatewayApp.car.manufacturerYear">Manufacturer Year</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </button>
+                <button type="button" class="btn btn-light" jhiSortBy="registrationNo">
+                    <span jhiTranslate="gatewayApp.car.registrationNo">Registration No</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </button>
+            </div>
+        </div>
         <div class="list-group"><!--
    brand  model registrationNo image manufacturerYear driverId -->
             <div class="list-group-item list-group-item-action flex-column align-items-start"
-               *ngFor="let car of cars; trackBy: trackId">
+               *ngFor="let car of (cars | pureFilter:filter:'brand'); trackBy: trackId">
                 <div class="row">
                     <div class="col justify-content-center">
                         <a [routerLink]="['../car', car.id, 'view']" >
