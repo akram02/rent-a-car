@@ -10,7 +10,59 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="table-responsive" *ngIf="cars">
+    <div *ngIf="cars">
+        <div class="list-group"><!--
+   brand  model registrationNo image manufacturerYear driverId -->
+            <div class="list-group-item list-group-item-action flex-column align-items-start"
+               *ngFor="let car of cars; trackBy: trackId">
+                <div class="row">
+                    <div class="col justify-content-center">
+                        <a [routerLink]="['../car', car.id, 'view']" >
+                            <img [src]="'data:' + car.imageContentType +
+                        ';base64,' + car.image"
+                                 style="max-height: 150px;" alt="car image"/>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h3 class="mb-1"><a [routerLink]="['../car', car.id, 'view']" >
+                                {{car.brand}} {{car.model}}
+                            </a></h3>
+                            <div class="btn-group flex-btn-group-container">
+                                <button type="submit"
+                                        [routerLink]="['/car', car.id, 'view' ]"
+                                        class="btn btn-info btn-sm">
+                                    <fa-icon [icon]="'eye'"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                </button>
+                                <button type="submit"
+                                        [routerLink]="['/car', car.id, 'edit']"
+                                        class="btn btn-primary btn-sm">
+                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                </button>
+                                <button type="submit"
+                                        [routerLink]="['/', { outlets: { popup: 'car/'+ car.id + '/delete'} }]"
+                                        replaceUrl="true"
+                                        queryParamsHandling="merge"
+                                        class="btn btn-danger btn-sm">
+                                    <fa-icon [icon]="'times'"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                </button>
+                            </div>
+                        </div>
+                        <p *ngIf="car.cartype" class="mb-1">Car Type : <a [routerLink]="['../car-type', car.cartype?.id, 'view']" >{{car.cartype?.typeName}}</a></p>
+                        <p *ngIf="car.registrationNo" class="mb-1">Registration Number : <b>{{car.registrationNo}}</b></p>
+                        <p class="mb-1">Manufacture Year : <b>{{car.manufacturerYear}}</b></p>
+                        <p class="mb-1">Fleet Owner : <b><a [routerLink]="['../fleet-owner', car.fleetowner.id, 'view']">{{car.fleetowner.user.firstName}} {{car.fleetowner.user.lastName}}</a></b></p>
+                        <p class="mb-1">Created At : <b>{{car.createdAt | date:'medium'}}</b></p>
+                        <p class="mb-1">Updated At : <b>{{car.updatedAt | date:'medium'}}</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="table-responsive" *ngIf="cars">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
@@ -81,7 +133,7 @@
             </tr>
             </tbody>
         </table>
-    </div>
+    </div>-->
     <div *ngIf="cars && cars.length">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>

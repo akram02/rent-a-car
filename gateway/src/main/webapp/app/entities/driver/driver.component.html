@@ -10,7 +10,63 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="table-responsive" *ngIf="drivers">
+    <div *ngIf="drivers">
+        <div class="list-group-item list-group-item-action flex-column align-items-start"
+             *ngFor="let driver of drivers; trackBy: trackId">
+            <div class="row">
+                <div class="col justify-content-center">
+                    <a [routerLink]="['../driver', driver.id, 'view']">
+                        <img [src]="'data:' + driver.imageContentType +
+                    ';base64,' + driver.image"
+                             style="max-height: 300px;" alt="driver image" />
+                    </a>
+                </div>
+                <div class="col">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h3 class="mb-1"><a [routerLink]="['../driver', driver.id, 'view']" >
+                            {{driver.firstName}} {{driver.lastName}}
+                        </a></h3>
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    [routerLink]="['/driver', driver.id, 'view' ]"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon [icon]="'eye'"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+                            <button type="submit"
+                                    [routerLink]="['/driver', driver.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+                            <button type="submit"
+                                    [routerLink]="['/', { outlets: { popup: 'driver/'+ driver.id + '/delete'} }]"
+                                    replaceUrl="true"
+                                    queryParamsHandling="merge"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!--firstName lastName email gender phone addressLine1 addressLine2 city country licenseNo licenseImage nid nidImage image createdAt updatedAt -->
+                    <p *ngIf="driver.email" class="mb-1">Email : <b>{{driver.email}}</b></p>
+                    <p *ngIf="driver.phone" class="mb-1">Phone : <b>{{driver.phone}}</b></p>
+                    <p *ngIf="driver.gender" class="mb-1">Gender : <b>{{driver.gender}}</b></p>
+                    <p *ngIf="driver.addressLine1" class="mb-1">Address Line 1 : <b>{{driver.addressLine1}}</b></p>
+                    <p *ngIf="driver.addressLine2" class="mb-1">Address Line 2 : <b>{{driver.addressLine2}}</b></p>
+                    <p *ngIf="driver.city" class="mb-1">City : <b>{{driver.city}}</b></p>
+                    <p *ngIf="driver.country" class="mb-1">Country : <b>{{driver.country}}</b></p>
+                    <p *ngIf="driver.licenseNo" class="mb-1">License Number : <b>{{driver.licenseNo}}</b></p>
+                    <p *ngIf="driver.nid" class="mb-1">NID : <b>{{driver.nid}}</b></p>
+                    <p *ngIf="driver.createdAt" class="mb-1">Created At : <b>{{driver.createdAt}}</b></p>
+                    <p *ngIf="driver.updatedAt" class="mb-1">Updated At : <b>{{driver.updatedAt}}</b></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="table-responsive" *ngIf="drivers">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
@@ -107,7 +163,7 @@
             </tr>
             </tbody>
         </table>
-    </div>
+    </div>-->
     <div *ngIf="drivers && drivers.length">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>

@@ -16,14 +16,14 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="typeName"><span jhiTranslate="gatewayApp.carType.typeName">Type Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
+            <th *jhiHasAnyAuthority="'ROLE_ADMIN'"></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let carType of carTypes ;trackBy: trackId">
                 <td><a [routerLink]="['/car-type', carType.id, 'view' ]">{{carType.id}}</a></td>
                 <td>{{carType.typeName}}</td>
-                <td class="text-right">
+                <td class="text-right" *jhiHasAnyAuthority="'ROLE_ADMIN'">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
                                 [routerLink]="['/car-type', carType.id, 'view' ]"
